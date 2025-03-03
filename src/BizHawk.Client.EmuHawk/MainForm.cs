@@ -3277,7 +3277,7 @@ namespace BizHawk.Client.EmuHawk
 		/// </summary>
 		/// <param name="videoWriterName">match the short name of an <see cref="IVideoWriter"/></param>
 		/// <param name="filename">filename to save to</param>
-		private void RecordAv(string videoWriterName, string filename)
+		public void RecordAv(string videoWriterName, string filename)
 		{
 			RecordAvBase(videoWriterName, filename, true);
 		}
@@ -3285,7 +3285,7 @@ namespace BizHawk.Client.EmuHawk
 		/// <summary>
 		/// start AV recording, asking user for filename and options
 		/// </summary>
-		private void RecordAv()
+		public void RecordAv()
 		{
 			RecordAvBase(null, null, false);
 		}
@@ -3470,7 +3470,7 @@ namespace BizHawk.Client.EmuHawk
 			RewireSound();
 		}
 
-		private void StopAv()
+		public void StopAv()
 		{
 			if (_currAviWriter == null)
 			{

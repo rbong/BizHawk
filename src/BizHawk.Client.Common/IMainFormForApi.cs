@@ -30,7 +30,16 @@ namespace BizHawk.Client.Common
 		(HttpCommunication HTTP, MemoryMappedFiles MMF, SocketServer Sockets) NetworkingHelpers { get; }
 
 		/// <remarks>only referenced from <c>EmuClientApi</c></remarks>
+		void RecordAv(string videoWriterName, string filename);
+
+		/// <remarks>only referenced from <c>EmuClientApi</c></remarks>
+		void RecordAv();
+
+		/// <remarks>only referenced from <c>EmuClientApi</c></remarks>
 		bool PauseAvi { get; set; }
+
+		/// <remarks>only referenced from <c>EmuClientApi</c></remarks>
+		void StopAv();
 
 		/// <remarks>only referenced from <c>EmuClientApi</c></remarks>
 		void ClearHolds();

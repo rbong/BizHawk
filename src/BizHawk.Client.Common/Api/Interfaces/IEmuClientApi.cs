@@ -94,7 +94,13 @@ namespace BizHawk.Client.Common
 
 		void Pause();
 
+		void RecordAv();
+
+		void RecordAv(string videoWriterName, string filename);
+
 		void PauseAv();
+
+		void StopAv();
 
 		void RebootCore();
 

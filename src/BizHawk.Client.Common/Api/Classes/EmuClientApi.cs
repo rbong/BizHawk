@@ -144,7 +144,13 @@ namespace BizHawk.Client.Common
 
 		public void Pause() => _mainForm.PauseEmulator();
 
+		public void RecordAv() => _mainForm.RecordAv();
+
+		public void RecordAv(string videoWriterName, string filename) => _mainForm.RecordAv(videoWriterName, filename);
+
 		public void PauseAv() => _mainForm.PauseAvi = true;
+
+		public void StopAv() => _mainForm.StopAv();
 
 		public void RebootCore() => _mainForm.RebootCore();
 
