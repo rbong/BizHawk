@@ -1,5 +1,5 @@
 #!/bin/sh
-cd "$(dirname "$(realpath "$0")")"
+SCRIPTDIR="$(dirname "$(realpath "$0")")"
 libpath=""
 if [ "$(command -v lsb_release)" ]; then
 	case "$(lsb_release -i | head -n1 | cut -c17- | tr A-Z a-z)" in
@@ -15,7 +15,7 @@ if [ -z "$libpath" ]; then
 	printf "%s\n" "Unknown distro, assuming system-wide libraries are in /usr/lib..."
 	libpath="/usr/lib"
 fi
-export LD_LIBRARY_PATH="$PWD/dll:$PWD:$libpath"
+export LD_LIBRARY_PATH="$SCRIPTDIR/dll:$SCRIPTDIR:$libpath"
 export MONO_CRASH_NOFILE=1
 export MONO_THREADS_SUSPEND=preemptive # defaults to the experimental hybrid mode for some reason; this simpler mode performs better
 export MONO_WINFORMS_XIM_STYLE=disabled # see https://bugzilla.xamarin.com/show_bug.cgi?id=28047#c9
@@ -30,7 +30,7 @@ fi
 o="$(mktemp -u)"
 e="$(mktemp -u)"
 mkfifo "$o" "$e"
-printf "(capturing output in %s/EmuHawkMono_last*.txt)\n" "$PWD" >&2
-tee EmuHawkMono_laststdout.txt <"$o" &
-tee EmuHawkMono_laststderr.txt <"$e" | sed "s/.*/$(tput setaf 1)&$(tput sgr0)/" >&2 &
-exec mono EmuHawk.exe "$@" >"$o" 2>"$e"
+printf "(capturing output in %s/EmuHawkMono_last*.txt)\n" "$SCRIPTDIR" >&2
+tee "$SCRIPTDIR/EmuHawkMono_laststdout.txt" <"$o" &
+tee "$SCRIPTDIR/EmuHawkMono_laststderr.txt" <"$e" | sed "s/.*/$(tput setaf 1)&$(tput sgr0)/" >&2 &
+exec mono "$SCRIPTDIR/EmuHawk.exe" "$@" >"$o" 2>"$e"
